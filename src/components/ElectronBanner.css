@@ -1,0 +1,19 @@
+.electron-banner {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+  padding: 10px 16px;
+  background: #5a3e2b;
+  border-bottom: 2px solid var(--color-gold);
+  font-size: 0.85rem;
+  text-align: center;
+}
+
+.electron-banner code {
+  background: rgba(0, 0, 0, 0.35);
+  padding: 2px 6px;
+  border-radius: 3px;
+  color: var(--color-highlight);
+}

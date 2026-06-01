@@ -1,0 +1,79 @@
+.library-page {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+  overflow-y: auto;
+}
+
+.library-page__header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 16px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--color-brown);
+}
+
+.library-page__header h1 {
+  flex: 1;
+  font-size: 1.5rem;
+  color: var(--color-highlight);
+  letter-spacing: 0.08em;
+}
+
+.library-page__actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.library-page__path {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.55);
+  margin-bottom: 20px;
+  word-break: break-all;
+}
+
+.library-page__path code {
+  color: var(--color-gold);
+}
+
+.library-page__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 16px;
+}
+
+.library-page__empty {
+  grid-column: 1 / -1;
+  color: rgba(255, 255, 255, 0.5);
+  padding: 2rem;
+  text-align: center;
+}
+
+.library-card {
+  background: var(--color-panel);
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.library-card h2 {
+  font-size: 1rem;
+  color: var(--color-highlight);
+}
+
+.library-card__file {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.5);
+  flex: 1;
+}
+
+.library-card .tw-btn {
+  align-self: flex-start;
+}

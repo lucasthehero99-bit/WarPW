@@ -1,0 +1,40 @@
+.map-viewer {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 50% 50%, #1a1a1a 0%, var(--color-bg) 100%),
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 24px,
+      rgba(90, 62, 43, 0.08) 24px,
+      rgba(90, 62, 43, 0.08) 25px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 24px,
+      rgba(90, 62, 43, 0.08) 24px,
+      rgba(90, 62, 43, 0.08) 25px
+    );
+}
+
+.map-viewer--dragging {
+  user-select: none;
+}
+
+.map-viewer__placeholder {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.95rem;
+  border: 1px dashed var(--color-brown);
+  margin: 16px;
+  border-radius: 4px;
+}

@@ -1,0 +1,68 @@
+.tw-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: 4px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  transition: background 0.2s, border-color 0.2s, transform 0.15s, box-shadow 0.2s;
+}
+
+.tw-btn--medium {
+  min-width: 220px;
+  font-size: 0.9rem;
+}
+
+.tw-btn--small {
+  min-width: auto;
+  padding: 0.45rem 0.85rem;
+  font-size: 0.75rem;
+}
+
+.tw-btn--primary {
+  background: linear-gradient(180deg, #6b4a32 0%, var(--color-brown) 100%);
+  border: 1px solid var(--color-gold);
+  color: var(--color-highlight);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+.tw-btn--primary:hover:not(:disabled) {
+  background: linear-gradient(180deg, #7a5638 0%, #6b4a32 100%);
+  box-shadow: 0 0 12px rgba(212, 175, 55, 0.25);
+  transform: translateY(-1px);
+}
+
+.tw-btn--secondary {
+  background: var(--color-panel);
+  border: 1px solid var(--color-border);
+  color: var(--color-text);
+}
+
+.tw-btn--secondary:hover:not(:disabled) {
+  border-color: var(--color-gold);
+  color: var(--color-highlight);
+}
+
+.tw-btn--ghost {
+  background: transparent;
+  border: 1px solid transparent;
+  color: var(--color-gold);
+  min-width: auto;
+  padding: 0.35rem 0.6rem;
+  text-transform: none;
+  font-weight: 500;
+  letter-spacing: 0;
+}
+
+.tw-btn--ghost:hover:not(:disabled) {
+  color: var(--color-highlight);
+  background: rgba(212, 175, 55, 0.08);
+}
+
+.tw-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

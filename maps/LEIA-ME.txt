@@ -1,0 +1,12 @@
+TW Commander — Pasta de Mapas
+================================
+
+Coloque aqui imagens de mapas nos formatos:
+  PNG, JPG, JPEG, WEBP
+
+O aplicativo carrega automaticamente todos os arquivos desta pasta.
+
+IMPORTANTE:
+- Em desenvolvimento: use "npm run dev" (não abra só o navegador em localhost:5173).
+- No instalador (.exe): mapas ficam em AppData; use "Importar Mapa" ou "Abrir Pasta" na biblioteca.
+  A pasta /maps do projeto só é usada quando você roda pelo código-fonte.
