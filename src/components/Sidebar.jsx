@@ -1,9 +1,9 @@
 import Button from './Button';
+import LayerPanel from './layers/LayerPanel';
 import './Sidebar.css';
 
 /**
- * Painel lateral de ferramentas.
- * FUTURE: camadas para esquadrões, objetivos, setas e marcadores arrastáveis.
+ * Painel lateral de ferramentas e controle de camadas.
  */
 export default function Sidebar({
   maps,
@@ -51,6 +51,8 @@ export default function Sidebar({
         </Button>
       </section>
 
+      <LayerPanel />
+
       <section className="sidebar__section">
         <h2 className="sidebar__title">Zoom</h2>
         <div className="sidebar__zoom-controls">
@@ -94,11 +96,6 @@ export default function Sidebar({
         )}
       </section>
 
-      {/*
-        FUTURE: Timeline — controles de playback e keyframes de movimentação.
-        FUTURE: Esquadrões — lista de unidades com drag para o canvas.
-        FUTURE: Multiplayer — status de sala e jogadores conectados.
-      */}
     </aside>
   );
 }

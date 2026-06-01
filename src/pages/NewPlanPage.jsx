@@ -2,17 +2,25 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import EditorLayout from '../layouts/EditorLayout';
 import Sidebar from '../components/Sidebar';
-import MapViewer from '../components/MapViewer';
+import MapCanvas from '../components/canvas/MapCanvas';
+import { PlanProvider } from '../context/PlanContext';
 import { useMaps } from '../hooks/useMaps';
 import { readMap } from '../services/mapService';
 import './NewPlanPage.css';
 
 /**
- * Área principal de planejamento (MVP: visualização de mapas).
- * FUTURE: estado global do plano (esquadrões, objetivos, anotações).
- * FUTURE: persistência local e exportação .twplan.
+ * Área principal de planejamento com sistema de camadas (LayerManager).
+ * FUTURE: persistência local e exportação .twplan via PlanDocument.getSnapshot().
  */
 export default function NewPlanPage() {
+  return (
+    <PlanProvider>
+      <NewPlanEditor />
+    </PlanProvider>
+  );
+}
+
+function NewPlanEditor() {
   const navigate = useNavigate();
   const location = useLocation();
   const { maps, loading, error: mapsError, importMap, refresh } = useMaps();
@@ -128,7 +136,7 @@ export default function NewPlanPage() {
             </button>
           </div>
         )}
-        <MapViewer
+        <MapCanvas
           imageUrl={imageUrl}
           onImageLoad={handleImageLoad}
           onImageError={handleImageError}

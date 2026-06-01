@@ -1,39 +1,49 @@
-# Arquitetura Futura — TW Commander
+# Arquitetura — TW Commander
 
-Este documento descreve onde cada módulo será integrado nas próximas versões.
+## Sistema de Camadas (implementado)
 
-## Canvas (Konva) — `src/components/MapViewer.jsx`
+| Ordem | ID | Nome | Conteúdo futuro |
+|-------|-----|------|-----------------|
+| 1 | `map` | Mapa | Imagem TW (base, bloqueada) |
+| 2 | `objectives` | Objetivos | Torres, cristais, bases |
+| 3 | `squads` | Esquadrões | Grupos ataque/defesa arrastáveis |
+| 4 | `tactical-arrows` | Setas Táticas | Rotas, avanços, recuos |
+| 5 | `texts` | Textos | Observações e comandos |
+| 6 | `markings` | Marcações | Círculos, retângulos, destaques |
 
-| Recurso | Implementação planejada |
-|---------|-------------------------|
-| Esquadrões arrastáveis | Nova `Layer` com `Konva.Group` por unidade |
-| Objetivos | Marcadores com ícones e labels |
-| Setas | `Konva.Arrow` na layer `annotations` |
-| Marcadores | `Konva.Label` + formas customizadas |
+### Módulos centrais
 
-## Estado do plano — `src/pages/NewPlanPage.jsx`
+| Arquivo | Responsabilidade |
+|---------|------------------|
+| `src/layers/LayerManager.js` | visível, bloqueada, ordem, snapshots |
+| `src/layers/PlanDocument.js` | elementos com `layerId` obrigatório |
+| `src/context/PlanContext.jsx` | instâncias por sessão de edição |
+| `src/components/canvas/MapCanvas.jsx` | renderização ordenada por camada |
+| `src/components/layers/LayerPanel.jsx` | UI ocultar / bloquear |
 
-- Store central (Context ou Zustand) para entidades do plano
-- Serialização para arquivo `.twplan`
-- Undo/redo via histórico de comandos
+### Regras
 
-## Electron — `electron/main.js`
+- Todo elemento **deve** ter `layerId` registrado no `LayerManager`.
+- Renderização segue `order` (z-index) de baixo para cima.
+- `canEdit(layerId)` = visível && !bloqueada.
+- Camada `map` permanece bloqueada (fundo não editável).
+
+### Multiplayer (futuro)
+
+- `src/services/syncService.js` — replicar eventos `LAYER_EVENTS` e `PLAN_EVENTS`.
+
+### Replay (futuro)
+
+- `src/services/replayService.js` — gravar `getSnapshot()` de LayerManager + PlanDocument.
+
+## Electron
 
 | Recurso | Local |
 |---------|-------|
-| Banco local SQLite | Inicialização em `app.whenReady()` |
-| Licenciamento | Validação antes de `createWindow()` |
-| Socket.IO | Processo auxiliar ou integrado ao main |
+| Banco local SQLite | `electron/main.js` |
+| Licenciamento | `electron/main.js` |
+| Socket.IO | processo auxiliar + `syncService` |
 
-## Serviços — `src/services/`
+## Persistência (futuro)
 
-- `mapService.js` — cache e metadados de mapas
-- `planService.js` (futuro) — CRUD de estratégias
-- `syncService.js` (futuro) — multiplayer
-- `replayService.js` (futuro) — timeline e playback
-
-## UI
-
-- `Sidebar.jsx` — ferramentas de esquadrões e timeline
-- `TopMenuBar.jsx` — exportação, importação, replay
-- `SettingsPage.jsx` — tema, idioma, updates, licença
+- Arquivo `.twplan`: `{ layers: LayerManager.getSnapshot(), plan: PlanDocument.getSnapshot() }`
